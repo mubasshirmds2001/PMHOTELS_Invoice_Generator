@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM HOTELS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+
+<body>
+    <div id="header-content" class="header">
+        <div class="hlogo">
+            <img src="logo.png" alt="logo">
+        </div>
+        <div class="hcontent">
+            <h1 class="title">PM HOTELS</h1>
+            <p>No 14&15, 8Th Cross, NGR Layout, Roopena Agrahara, Bangalore, 560068</p>
+            <div class="contact">
+                <div class="contact-details">
+                    <div class="icon"><i class="fas fa-phone"></i></div>
+                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">080 40967223</div>
+                </div>
+
+                <div class="contact-details">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">9535471776</div>
+                </div>
+
+                <div class="contact-details">
+                    <div class="icon"><i class="far fa-envelope"></i></div>
+                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">pmhotelsblr@gmail.com</div>
+                </div>
+            </div>
+            <p class="gst">GST No : 29CSYPM1402L1Z5</p>
+        </div>
+    </div>
+
+    <section class="invoice-form">
+        <h2>Generate Invoice</h2>
+        <form id="invoiceForm">
+            <div class="invHead">
+                <div class="invDiv1">
+                    <div class="form-group">
+                        <label for="clientName">Client Name:</label>
+                        <input type="text" id="clientName" name="clientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="number" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gst">GST No:</label>
+                        <input type="text" id="gst" name="gst" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomNo">Room No:</label>
+                        <input type="number" id="roomNo" name="roomNo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax">Pax:</label>
+                        <input type="number" id="pax" name="pax" required>
+                    </div>
+                </div>
+
+                <div class="invDiv2">
+                    <div class="form-group">
+                        <label for="invoiceNo">Invoice No:</label>
+                        <input type="text" id="invoiceNo" name="invoiceNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoiceDate">Invoice Date:</label>
+                        <input type="date" id="invoiceDate" name="invoiceDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkIn">Check In Date:</label>
+                        <input type="date" id="checkIn" name="checkIn" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkInTime">Check In Time:</label>
+                        <input type="time" id="checkInTime" name="checkInTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOut">Check Out Date:</label>
+                        <input type="date" id="checkOut" name="checkOut" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOutTime">Check Out Time:</label>
+                        <input type="time" id="checkOutTime" name="checkOutTime" required>
+                    </div>
+                </div>
+            </div>
+            <hr class="line">
+
+            <div class="invDiv3">
+                <div class="form-group">
+                    <label for="roomCharge">Room Charges:</label>
+                    <input type="number" id="roomCharge" name="roomCharge" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="days">Days:</label>
+                    <input type="number" id="days" name="days" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
+            </div>
+
+            <div class="invDiv4">
+                <div class="form-group">
+                    <label for="sgstPercentage">SGST (%):</label>
+                    <input type="number" id="sgstPercentage" name="sgstPercentage" min="0" max="100" step="0.01"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="totalSGST">Total SGST:</label>
+                    <input type="number" id="totalSGST" name="totalSGST" readonly>
+                </div>
+            </div>
+
+            <div class="invDiv5">
+                <div class="form-group">
+                    <label for="cgstPercentage">CGST (%):</label>
+                    <input type="number" id="cgstPercentage" name="cgstPercentage" min="0" max="100" step="0.01"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="totalCGST">Total CGST:</label>
+                    <input type="number" id="totalCGST" name="totalCGST" readonly>
+                </div>
+            </div>
+
+            <div class="invDiv5">
+                <div class="form-group">
+                    <label for="igstPercentage">IGST (%):</label>
+                    <input type="number" id="igstPercentage" name="igstPercentage" min="0" max="100" step="0.01"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="totalIGST">Total IGST:</label>
+                    <input type="number" id="totalIGST" name="totalIGST" readonly>
+                </div>
+            </div>
+
+            <div class="invDiv6">
+                <div class="form-group">
+                    <label for="grandTotal">Grand Total:</label>
+                    <input type="number" id="grandTotal" name="grandTotal" readonly>
+                </div>
+            </div>
+            <p id="grandTotalWords"></p>
+            <div class="btnCont">
+                <button id="button" type="submit">Generate Invoice</button>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        function calculatePrice() {
+            var roomCharge = parseFloat(document.getElementById('roomCharge').value);
+            var days = parseFloat(document.getElementById('days').value);
+
+            if (!isNaN(roomCharge) && !isNaN(days)) {
+                var price = (roomCharge * days).toFixed(2);
+                document.getElementById('price').value = price;
+                calculateGST(); // Call calculateGST after updating price
+            }
+        }
+
+        document.getElementById('roomCharge').addEventListener('input', calculatePrice);
+        document.getElementById('days').addEventListener('input', calculatePrice);
+
+        function calculateGST() {
+            var totPrice = parseFloat(document.getElementById('price').value);
+            var sgstPercentage = parseFloat(document.getElementById('sgstPercentage').value);
+            var cgstPercentage = parseFloat(document.getElementById('cgstPercentage').value);
+            var igstPercentage = parseFloat(document.getElementById('igstPercentage').value);
+
+            // Check if both SGST and CGST percentage values are valid numbers
+            if (!isNaN(sgstPercentage) && !isNaN(cgstPercentage)) {
+                var sgst = totPrice * sgstPercentage / 100; // Convert SGST percentage to decimal
+                var cgst = totPrice * cgstPercentage / 100; // Convert CGST percentage to decimal
+                var igst = totPrice * igstPercentage / 100; // Convert CGST percentage to decimal
+                var totalSGST = sgst.toFixed(2); // Total SGST
+                var totalCGST = cgst.toFixed(2); // Total CGST
+                var totalIGST = igst.toFixed(2); // Total CGST
+                document.getElementById('totalSGST').value = totalSGST;
+                document.getElementById('totalCGST').value = totalCGST;
+                document.getElementById('totalIGST').value = totalIGST;
+
+                // Calculate grand total
+                var grandTot = (totPrice + sgst + cgst + igst).toFixed(2);
+                document.getElementById('grandTotal').value = grandTot;
+
+                // Convert grand total to words and display
+                var grandTotalWords = convertToWords(parseFloat(grandTot));
+                document.getElementById('grandTotalWords').innerText = grandTotalWords;
+
+            }
+        }
+
+        // Listen for changes in SGST and CGST percentage inputs
+        document.getElementById('sgstPercentage').addEventListener('input', calculateGST);
+        document.getElementById('cgstPercentage').addEventListener('input', calculateGST);
+        document.getElementById('igstPercentage').addEventListener('input', calculateGST);
+
+        function convertToWords(num) {
+            // Array of units
+            var units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+            // Array of tens up to ninety
+            var tens = ['', 'Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            // Array of ten to nineteen
+            var teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+
+            // Convert the number to a string
+            var numStr = num.toString();
+
+            // Function to get the word for a two-digit number
+            // Function to get the word for a two-digit number
+            function twoDigit(numStr) {
+                var result = '';
+                var num = parseInt(numStr);
+                if (num >= 10 && num <= 19) {
+                    result += teens[num - 10];
+                } else {
+                    var unit = num % 10;
+                    var ten = Math.floor(num / 10);
+                    result += tens[ten];
+                    if (unit !== 0) {
+                        if (ten !== 0) {
+                            result += ' ' + units[unit];
+                        } else {
+                            result = units[unit];
+                        }
+                    }
+                }
+                return result;
+            }
+
+            // Function to get the word for a three-digit number
+            // Function to get the word for a three-digit number
+            function threeDigit(numStr) {
+                var result = '';
+                var hundred = Math.floor(parseInt(numStr) / 100);
+                if (hundred !== 0) {
+                    result += units[hundred] + ' Hundred';
+                }
+                var remaining = parseInt(numStr) % 100;
+                if (remaining !== 0) {
+                    if (hundred !== 0) {
+                        result += ' and ';
+                    }
+                    result += twoDigit(remaining.toString());
+                }
+                return result;
+            }
+
+
+
+            // Function to get the word for a number
+            function getWord(numStr) {
+                var num = parseInt(numStr);
+                if (num === 0) {
+                    return 'Zero';
+                } else if (num < 10) {
+                    return units[num];
+                } else if (num < 100) {
+                    return twoDigit(numStr);
+                } else if (num < 1000) {
+                    return threeDigit(numStr);
+                } else if (num < 1000000) { // Up to six digits
+                    var thousand = Math.floor(num / 1000);
+                    var remaining = num % 1000;
+                    var result = '';
+                    if (thousand >= 100) {
+                        result += threeDigit(thousand.toString()) + ' Thousand';
+                    } else {
+                        result += twoDigit(thousand.toString()) + ' Thousand';
+                    }
+                    if (remaining !== 0) {
+                        result += ' ' + threeDigit(remaining.toString());
+                    }
+                    return result;
+                } else if (num < 1000000000) { // Up to nine digits
+                    var million = Math.floor(num / 1000000);
+                    var remaining = num % 1000000;
+                    var result = '';
+                    if (million >= 100) {
+                        result += threeDigit(million.toString()) + ' Million';
+                    } else {
+                        result += twoDigit(million.toString()) + ' Million';
+                    }
+                    if (remaining !== 0) {
+                        result += ' ' + threeDigit(remaining.toString());
+                    }
+                    return result;
+                } else {
+                    return 'Number out of range';
+                }
+            }
+
+            // Convert the number to words
+            var words = getWord(numStr);
+            return words + ' Rupees Only';
+        }
+
+        document.getElementById('button').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent form submission
+            submitForm();
+        });
+
+
+        function submitForm() {
+            // Get form input values
+            var clientName = document.getElementById('clientName').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var state = document.getElementById('state').value.trim();
+            var gst = document.getElementById('gst').value.trim();
+            var roomNo = document.getElementById('roomNo').value.trim();
+            var pax = document.getElementById('pax').value.trim();
+            var invoiceNo = document.getElementById('invoiceNo').value.trim();
+            var invoiceDate = document.getElementById('invoiceDate').value.trim();
+            var checkIn = document.getElementById('checkIn').value.trim();
+            var checkInTime = document.getElementById('checkInTime').value.trim();
+            var checkOut = document.getElementById('checkOut').value.trim();
+            var checkOutTime = document.getElementById('checkOutTime').value.trim();
+            var roomCharge = document.getElementById('roomCharge').value.trim();
+            var days = document.getElementById('days').value.trim();
+            var sgstPercentage = document.getElementById('sgstPercentage').value.trim();
+            var cgstPercentage = document.getElementById('cgstPercentage').value.trim();
+
+            // Validate form inputs
+            if (!clientName || !phone || !state || !gst || !roomNo || !pax || !invoiceNo || !invoiceDate || !checkIn || !checkInTime || !checkOut || !checkOutTime || !roomCharge || !days || !sgstPercentage || !cgstPercentage) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+
+            // Ensure numeric fields are valid numbers
+            if (isNaN(phone) || isNaN(roomNo) || isNaN(pax) || isNaN(roomCharge) || isNaN(days) || isNaN(sgstPercentage) || isNaN(cgstPercentage)) {
+                alert("Please enter valid numeric values.");
+                return;
+            }
+
+            // Ensure date fields are in the correct format
+            var dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+            if (!dateRegex.test(invoiceDate) || !dateRegex.test(checkIn) || !dateRegex.test(checkOut)) {
+                alert("Please enter dates in the format YYYY-MM-DD.");
+                return;
+            }
+
+            // Ensure time fields are in the correct format
+            var timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            if (!timeRegex.test(checkInTime) || !timeRegex.test(checkOutTime)) {
+                alert("Please enter times in the format HH:MM (24-hour format).");
+                return;
+            }
+
+            // If all validations pass, proceed with PDF generation
+            generatePDF();
+        }
+
+        function convertTo12HourFormat(time) {
+            var hours = parseInt(time.substring(0, 2));
+            var minutes = time.substring(3, 5);
+            var period = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return hours + ':' + minutes + ' ' + period;
+        }
+
+        function generatePDF() {
+            // Create a new jsPDF instance
+            var doc = new jsPDF();
+
+            // Convert HTML header to PDF and position at the top of each page
+            doc.addHTML(document.getElementById('header-content'), function () {
+                // Convert HTML content to PDF
+                doc.fromHTML(document.getElementById('html-content'), 10, 40);
+
+                // Set font size and color
+                doc.setFontSize(14);
+                doc.setTextColor(0, 0, 0); // Black color
+
+                // Get values from input fields
+                var clientName = document.getElementById('clientName').value;
+                var phone = document.getElementById('phone').value;
+                var state = document.getElementById('state').value;
+                var gst = document.getElementById('gst').value;
+                var roomNo = document.getElementById('roomNo').value;
+                var pax = document.getElementById('pax').value;
+                var invoiceNo = document.getElementById('invoiceNo').value;
+                var invoiceDate = document.getElementById('invoiceDate').value;
+                var checkIn = document.getElementById('checkIn').value;
+                var checkInTime = document.getElementById('checkInTime').value;
+                var checkOut = document.getElementById('checkOut').value;
+                var checkOutTime = document.getElementById('checkOutTime').value;
+                var roomCharge = document.getElementById('roomCharge').value;
+                var days = document.getElementById('days').value;
+                var price = document.getElementById('price').value;
+                var sgstPercentage = document.getElementById('sgstPercentage').value;
+                var totalSGST = document.getElementById('totalSGST').value;
+                var cgstPercentage = document.getElementById('cgstPercentage').value;
+                var totalCGST = document.getElementById('totalCGST').value;
+                var igstPercentage = document.getElementById('igstPercentage').value;
+                var totalIGST = document.getElementById('totalIGST').value;
+                var grandTotal = document.getElementById('grandTotal').value;
+                var grandTotalWords = document.getElementById('grandTotalWords').value;
+
+                var data1 = [
+                    ['Guest Name:', clientName, "Invoice No: ", invoiceNo],
+                    ['Phone:', phone, "Invoice Date:", invoiceDate],
+                    ['State:', state, "Check In Date:", checkIn],
+                    ['GST No:', gst, "Check In Time:", convertTo12HourFormat(checkInTime)],
+                    ['Room No:', roomNo, "Check Out Date:", checkOut],
+                    ['Pax:', pax, "Check Out Time:", convertTo12HourFormat(checkOutTime)]
+                ];
+
+                doc.autoTable({
+                    body: data1,
+                    startY: 60,
+                    theme: 'grid',
+                });
+
+                var data2 = [
+                    [roomCharge, days, price],
+                    [, ,],
+                    [, { content: "Total:", styles: { fontStyle: 'bold' } }, { content: price, styles: { fontStyle: 'bold' } }],
+                    [, "SGST(%) @ " + sgstPercentage, totalSGST],
+                    [, "CGST(%) @ " + cgstPercentage, totalCGST],
+                    [, "IGST(%) @ " + igstPercentage, totalIGST],
+                    [, { content: "Grand Total:", styles: { fontStyle: 'bold' } }, { content: grandTotal, styles: { fontStyle: 'bold' } }],
+                    [{ content: "Amount in Words: " + convertToWords(grandTotal), colSpan: 3, styles: { fontStyle: 'bold' } }, ""]
+                ];
+
+                doc.autoTable({
+                    head: [['Room Charges', 'Days', 'Price']],
+                    body: data2,
+                    startY: 120,
+                    theme: 'grid',
+                });
+
+                doc.rect(15, 200, 70, 35);
+                doc.setFontSize(11);
+                doc.setFontStyle('bold');
+                doc.text("A/c Details", 20, 205)
+                doc.setFontStyle('normal');
+                doc.text("Account No: 019763400001701\nName: P.M HOTELS\nBank: YES BANK\nA/c Type: C.A\nIFSC: YESB0000197\nBranch: Jayanagar, Bangalore", 20, 210);
+
+                doc.setFontSize(12);
+                doc.setTextColor(0, 0, 0);
+                doc.setFontStyle('bold');
+                doc.text("Manager Signature", 150, 255);
+                doc.text("Thanks for staying with us.", 20, 255);
+
+                doc.save(clientName + '.pdf');
+                alert("Invoice generated successfully...")
+            });
+        }
+    </script>
+
+</body>
+
+</html>
