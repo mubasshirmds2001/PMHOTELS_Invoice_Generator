@@ -14,29 +14,31 @@
 
 <body>
     <div id="header-content" class="header">
-        <div class="hlogo">
-            <img src="logo.png" alt="logo">
-        </div>
-        <div class="hcontent">
-            <h1 class="title">PM HOTELS</h1>
-            <p>No 14&15, 8Th Cross, NGR Layout, Roopena Agrahara, Bangalore, 560068</p>
-            <div class="contact">
-                <div class="contact-details">
-                    <div class="icon"><i class="fas fa-phone"></i></div>
-                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">080 40967223</div>
-                </div>
-
-                <div class="contact-details">
-                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">9535471776</div>
-                </div>
-
-                <div class="contact-details">
-                    <div class="icon"><i class="far fa-envelope"></i></div>
-                    <div class="data" style="font-family: 'Poppins';font-weight: 600;">pmhotelsblr@gmail.com</div>
-                </div>
+        <div class="header-data">
+            <div class="hlogo">
+                <img src="logo.png" alt="logo">
             </div>
-            <p class="gst">GST No : 29CSYPM1402L1Z5</p>
+            <div class="hcontent">
+                <h1 class="title">PM HOTELS</h1>
+                <p>No 14&15, 8Th Cross, NGR Layout, Roopena Agrahara, Bangalore, 560068</p>
+                <div class="contact">
+                    <div class="contact-details">
+                        <div class="icon"><i class="fas fa-phone"></i></div>
+                        <div class="data" style="font-family: 'Open Sans';font-weight: 600;">080 40967223</div>
+                    </div>
+    
+                    <div class="contact-details">
+                        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="data" style="font-family: 'Open Sans';font-weight: 600;">9535471776</div>
+                    </div>
+    
+                    <div class="contact-details">
+                        <div class="icon"><i class="far fa-envelope"></i></div>
+                        <div class="data" style="font-family: 'Open Sans';font-weight: 600;">pmhotelsblr@gmail.com</div>
+                    </div>
+                </div>
+                <p class="gst">GST No : 29CSYPM1402L1Z5</p>
+            </div>
         </div>
     </div>
 
@@ -396,8 +398,9 @@
             doc.addHTML(document.getElementById('header-content'), function () {
                 // Convert HTML content to PDF
                 doc.fromHTML(document.getElementById('html-content'), 10, 40);
-
+                
                 // Set font size and color
+                doc.setFont('Helvetica', 'normal');
                 doc.setFontSize(14);
                 doc.setTextColor(0, 0, 0); // Black color
 
@@ -425,7 +428,7 @@
                 var totalIGST = document.getElementById('totalIGST').value;
                 var grandTotal = document.getElementById('grandTotal').value;
                 var grandTotalWords = document.getElementById('grandTotalWords').value;
-
+                
                 var data1 = [
                     ['Guest Name:', clientName, "Invoice No: ", invoiceNo],
                     ['Phone:', phone, "Invoice Date:", invoiceDate],
@@ -462,15 +465,16 @@
                 doc.rect(15, 200, 70, 35);
                 doc.setFontSize(11);
                 doc.setFontStyle('bold');
-                doc.text("A/c Details", 20, 205)
+                doc.setFont('Courier', 'normal');
+                doc.text("A/c Details", 18, 205)
                 doc.setFontStyle('normal');
-                doc.text("Account No: 019763400001701\nName: P.M HOTELS\nBank: YES BANK\nA/c Type: C.A\nIFSC: YESB0000197\nBranch: Jayanagar, Bangalore", 20, 210);
+                doc.text("Account No: 019763400001701\nName: P.M HOTELS\nBank: YES BANK\nA/c Type: C.A\nIFSC: YESB0000197\nBranch: Jayanagar, Bangalore", 18, 210);
 
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0);
                 doc.setFontStyle('bold');
-                doc.text("Manager Signature", 150, 255);
-                doc.text("Thanks for staying with us.", 20, 255);
+                doc.text("Manager Signature", 150, 256);
+                doc.text("Thanks for staying with us.", 18, 255);
 
                 doc.save(clientName + '.pdf');
                 alert("Invoice generated successfully...")
